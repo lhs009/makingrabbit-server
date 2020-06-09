@@ -1,0 +1,27 @@
+POST http://localhost:3000/auth/login HTTP/1.1
+content-type: application/json
+Authorization: Basic bWFraW5ncmFiYml0OjEyMzQ=
+###
+
+DELETE http://localhost:3000/auth/logout
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6Im1ha2luZ3JhYmJpdCIsImlhdCI6MTU5MTY4NzY0NywiZXhwIjoxNTkxNzc0MDQ3LCJpc3MiOiJhcGlodWIuY29tIn0.dT7e3RJGtcWRog6_ESop2vyZX-ieiohciTvlyTqqnbE
+###
+
+POST http://localhost:3000/auth/tokens
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6Im1ha2luZ3JhYmJpdCIsImlhdCI6MTU5MTY4Nzg3OCwiZXhwIjoxNTkxNzc0Mjc4LCJpc3MiOiJhcGlodWIuY29tIn0.S08Spd5jLC6tpPnt3WSdbPw91mJA10AXzbSF9VOIQYI
+content-type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6Im1ha2luZ3JhYmJpdCIsImlhdCI6MTU5MTY4Nzg3OCwiZXhwIjoxNTkxNjg3OTM4LCJpc3MiOiJhcGlodWIuY29tIn0.89__ps7F8fasIKxpZfZP5NUb-KWihSzwDP9VninMXq8"
+}
+
+###
+
+POST http://localhost:3000/service
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6Im1ha2luZ3JhYmJpdCIsImlhdCI6MTU5MTY4Nzg3OCwiZXhwIjoxNTkxNzc0Mjc4LCJpc3MiOiJhcGlodWIuY29tIn0.S08Spd5jLC6tpPnt3WSdbPw91mJA10AXzbSF9VOIQYI
+content-type: application/json
+
+{
+  "payload": "this is almost done"
+}

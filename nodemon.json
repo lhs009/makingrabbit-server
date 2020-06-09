@@ -1,0 +1,15 @@
+{
+  "watch": [
+    "index.js",
+    "common",
+    "controllers",
+    "lib",
+    "middlewares",
+    "models",
+    "routes",
+    "utils",
+    "nodemon.json"
+  ],
+  "exec": "node index.js",
+  "ext": "js json"
+}
