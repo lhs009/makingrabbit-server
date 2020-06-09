@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-const router = require("express").Router();
-const { authenticateToken } = require("../middlewares/authorizer");
-const { decryption } = require("../controllers/serviceController");
+const router = require('express').Router();
+const { authenticateToken } = require('../middlewares/authorizer');
+const { decryption } = require('../controllers/serviceController');
 
-router.post("/", authenticateToken, decryption);
+router.post('/', decryption);
 
 module.exports = router;

@@ -1,32 +1,38 @@
-const path = require("path");
-const express = require("express");
-const cors = require("cors");
-const db = require("./models");
-const config = require("./common/config");
-const httpResponse = require("./common/httpResponse");
-const authRouter = require("./routes/authRouters");
-const serviceRouter = require("./routes/serviceRouter");
+const path = require('path');
+const express = require('express');
+const cors = require('cors');
+const db = require('./models');
+const config = require('./common/config');
+const httpResponse = require('./common/httpResponse');
+const authRouter = require('./routes/authRouters');
+const serviceRouter = require('./routes/serviceRouter');
+const codeGenerateRouter = require('./routes/codeGenerateRouter');
 
 const app = express();
 
 /* set middlewares */
+app.set('view engine', 'ejs');
 app.use(cors()); // cross domain middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 // app.use(cors());
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
-/* set routers     */
-app.use("/auth", authRouter);
-app.use("/service", serviceRouter);
+/* set api server routers     */
+app.use('/auth', authRouter);
+app.use('/service', serviceRouter);
 
-app.get("/", (req, res) => {
-  res.send("hello");
+/* set code generator routers */
+app.use('/codes', codeGenerateRouter);
+
+app.get('/', (req, res) => {
+  res.send('hello');
 });
 
-app.get("/config", (req, res) => {
+app.get('/config', (req, res) => {
   console.log(JSON.stringify(config));
   res.json(config);
 });
@@ -49,7 +55,7 @@ app.use((req, res, next) => {
 /* error handler */
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
-  console.error(err.message + "::" + err.status);
+  console.error(err.message + '::' + err.status);
   res.status(err.status || 500);
   res.json({ success: false, message: err.message });
 });
