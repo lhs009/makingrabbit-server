@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Making Rabbit</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+      <div class="container-fluid">
+        <a href="landing.html" class="navbar-brand mr-3"
+          ><img src="assets/logo.png" alt="..." class="img-thumbnail"
+        /></a>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>QR/BAR 코드 생성 데모</h1>
+        <p class="lead mt-4">
+          <!-- <a href="https://www.tutorialrepublic.com" target="_blank"
+            >tutorialrepublic.com</a
+          > -->
+          실제 여권 리더기를 활용한 데모는 준비 중입니다. 준비 전까지는 MRZ 정보
+          생성 버튼을 눌러 랜덤으로 임의의 여권 MRZ 문자열을 생성 합니다.
+        </p>
+      </div>
+      <!--
+    firstName: "Jane",
+    lastName: "Lodges",
+    passportNumber: "123456789",
+    countryCode: "USA",
+    nationality: "USA",
+    birthday: "01.02.1983",
+    gender: "F",
+    validUntilDay: "02.03.2028",
+    personalNumber: "12345678901234",
+-->
+      <div class="row">
+        <div class="col-sm-6 card-group">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title mb-4">여권 리더기 입력 폼</h5>
+              <form action="" method="POST">
+                <div class="mb-3">
+                  <label for="validationTextarea"> MRZ 샘플 문자열 선택하세요</label>
+                  <select class="custom-select" id="mrz-select" required>
+                    <option value="">MRZ 체크섬 옵션...</option>
+                    <option value="0">올바른 여권 MRZ</option>
+                    <option value="1">잘못된 여권 MRZ</option>
+                    <option value="2">남성 여권 MRZ</option>
+                    <option value="3">성별 알수 없는 여권 MRZ</option>
+                    <option value="4">국가 코드 잘못 된 여권 MRZ</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="validationTextarea"
+                    >Wating on passport reader input...</label>
+                  <textarea
+                    class="form-control"
+                    id="mrz-text"
+                    placeholder="MRZ 스트링 (2 lines 라인 별 44 bytes)"
+                    required
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <!-- <button type="button" class="btn btn-info">MRZ 생성</button> -->
+                  <button type="button" class="btn btn-primary" id="code-btn">
+                    QR/BARCODE 생성
+                  </button>
+                </div>
+                </form>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!---------------------------------------- //-->
+        <div class="col-sm-6 card-group">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">QR/Bar Code</h5>
+
+              <div class="mb-3">
+                <img
+                  src="images/1korA12345678-qr.png"
+                  class="rounded mx-auto d-block"
+                />
+              </div>
+              <div class="mb-3">
+                <img
+                  src="images/1korA12345678-bar.png"
+                  class="rounded mx-auto d-block"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+      <footer class="mt-4">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Copyright &copy; 2020 Making Rabbit</p>
+          </div>
+          <div class="col-md-6 text-md-right">
+            <a href="#" class="text-dark">Terms of Use</a>
+            <span class="text-muted mx-2">|</span>
+            <a href="#" class="text-dark">Privacy Policy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script>
+      const mrzSamples = [
+        "P<CANMARTIN<<SARAH<<<<<<<<<<<<<<<<<<<<<<<<<<ZE000509<9CAN8501019F2301147<<<<<<<<<<<<<<08",
+        "G<CANMARTIN<<SARAH<<<<<<<<<<<<<<<<<<<<<<<<<<ZE000509<9CAN8501019F2301147<<<<<<<<<<<<<<08",
+        "P<CANMARTIN<<SARAH<<<<<<<<<<<<<<<<<<<<<<<<<<ZE000509<9CAN8501019M2301147<<<<<<<<<<<<<<08",
+        "P<CANMARTIN<<SARAH<<<<<<<<<<<<<<<<<<<<<<<<<<ZE000509<9CAN8501019X2301147<<<<<<<<<<<<<<08",
+        "P<UTOMARTIN<<SARAH<<<<<<<<<<<<<<<<<<<<<<<<<<ZE000509<9UTO8501019X2301147<<<<<<<<<<<<<<08",
+      ];
+      
+      const mrzText = document.getElementById('mrz-text');
+
+      document.getElementById('mrz-select').addEventListener('change', (e) => {
+        const value = e.target.value;
+
+        if (!value) return;
+        console.log(value);
+        const selectedMrz = mrzSamples[parseInt(value)];
+        mrzText.value = selectedMrz;
+        console.log(selectedMrz.length);
+      })
+
+      document.getElementById('code-btn').addEventListener('click', (e) => {
+        //axios.post('http://localhost:3000/codes', {}).then(data => {}).catch(error)
+        if (!mrzText.value || mrzText.value === '') {
+          alert('MRZ 문자열을 선택하세요!!')
+          return;
+        }
+        console.log('send')
+      });
+
+
+    </script>
+  </body>
+</html>
