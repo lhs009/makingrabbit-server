@@ -6,7 +6,7 @@ const config = require('./common/config');
 const httpResponse = require('./common/httpResponse');
 const authRouter = require('./routes/authRouters');
 const serviceRouter = require('./routes/serviceRouter');
-const codeGenerateRouter = require('./routes/codeGenerateRouter');
+const codeRouter = require('./routes/codeRouter');
 
 const app = express();
 
@@ -17,16 +17,13 @@ app.use(cors()); // cross domain middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(cors());
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
 
 /* set api server routers     */
 app.use('/auth', authRouter);
 app.use('/service', serviceRouter);
 
 /* set code generator routers */
-app.use('/codes', codeGenerateRouter);
+app.use('/codes', codeRouter);
 
 app.get('/', (req, res) => {
   res.send('hello');

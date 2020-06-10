@@ -23,5 +23,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6Im1ha2luZ
 content-type: application/json
 
 {
-  "payload": "srGwOFYXstiTBhYbI1hw"
+  "payload": "ssG4NkoJxtqQAhYdLQ==-bar"
+}
+
+
+###
+
+POST http://localhost:3000/codes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6Im1ha2luZ3JhYmJpdCIsImlhdCI6MTU5MTY4Nzg3OCwiZXhwIjoxNTkxNzc0Mjc4LCJpc3MiOiJhcGlodWIuY29tIn0.S08Spd5jLC6tpPnt3WSdbPw91mJA10AXzbSF9VOIQYI
+content-type: application/json
+
+{
+  "mrz": "P<CANMARTIN<<SARAH<<<<<<<<<<<<<<<<<<<<<<<<<<ZE000509<9CAN8501019F2301147<<<<<<<<<<<<<<08"
 }

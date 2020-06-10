@@ -5,6 +5,8 @@ const fs = require('fs');
 const bwipjs = require('bwip-js');
 const qr = require('qr-image');
 const httpResponse = require('../common/httpResponse');
+const { checkSumMRZ } = require('../lib/mrzUtil');
+const { encrypt } = require('../lib/cipherUtil');
 
 router.get('/', async (req, res) => {
   //res.send('<h1>이라온</h1>');
@@ -13,15 +15,21 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res, next) => {
-  const { codeType, country, passportNo } = req.body;
-  console.log(passportNo, codeType, country);
+  const mrz = req.body.mrz;
+  if (!mrz || mrz.length < 88) {
+    return next(httpResponse.InvalidParameters);
+  }
 
-  const str = codeType + country + passportNo;
   try {
-    const barcodePng = await barcodeGenerator(str);
+    const { valid, qr, bar } = checkSumMRZ(mrz);
+    if (!valid) {
+      return next(httpResponse.InvalidParameters);
+    }
+
+    const barcodePng = await barcodeGenerator(bar);
 
     fs.writeFile(
-      `./public/images/${str}-bar.png`,
+      `./public/images/${bar}-bar.png`,
       barcodePng,
       'binary',
       (err) => {
@@ -30,14 +38,20 @@ router.post('/', async (req, res, next) => {
         }
       }
     );
-    const qrPng = qrcodeGenerator(str);
-    fs.writeFileSync(`./public/images/${str}-qr.png`, qrPng, (err) => {
+    const qrPng = qrcodeGenerator(qr);
+    fs.writeFileSync(`./public/images/${qr}-qr.png`, qrPng, (err) => {
       if (err) {
         console.log(err);
       }
     });
 
-    res.redirect(`/codes/show/?imgUrl=${str}`);
+    res.json({
+      success: true,
+      qrcode: qr,
+      brcode: bar,
+    });
+
+    //res.redirect(`/codes/show/?imgUrl=${str}`);
   } catch (error) {
     console.log(error);
     next(httpResponse.InternalServerError);
@@ -65,43 +79,12 @@ const barcodeGenerator = async (data) => {
   });
 
   return png;
-
-  // fs.writeFile('barcode.png', png, 'binary', (err) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     console.log('The file was saved!');
-  //   }
-  // });
-
-  // bwipjs.toBuffer({
-  //   bcid:        'code128',       // Barcode type
-  //   text:        '0123456789',    // Text to encode
-  //   scale:       3,               // 3x scaling factor
-  //   height:      10,              // Bar height, in millimeters
-  //   includetext: true,            // Show human-readable text
-  //   textxalign:  'center',        // Always good to set this
-  // })
-  // .then(png => {
-  //   // `png` is a Buffer as in the example above
-  // })
-  // .catch(err => {
-  //   // `err` may be a string or Error object
-  // });
 };
 
 const qrcodeGenerator = (data) => {
   // Generate QR Code from text
   const png = qr.imageSync(data, { type: 'png' });
   return png;
-  //  // Generate a random file name
-  //  let qr_code_file_name = new Date().getTime() + '.png';
-  //  fs.writeFileSync('./public/qr/' + qr_code_file_name, qr_png, (err) => {
-  //      if(err){
-  //          console.log(err);
-  //      }
-
-  //  })
 };
 
 module.exports = router;

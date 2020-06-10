@@ -15,6 +15,7 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
@@ -34,8 +35,8 @@
           <!-- <a href="https://www.tutorialrepublic.com" target="_blank"
             >tutorialrepublic.com</a
           > -->
-          실제 여권 리더기를 활용한 데모는 준비 중입니다. 준비 전까지는 MRZ 정보
-          생성 버튼을 눌러 랜덤으로 임의의 여권 MRZ 문자열을 생성 합니다.
+          실제 여권 리더기를 활용한 데모는 준비 중입니다. 
+          준비 전까지는 임의의 여권 MRZ 문자열을 생성 해서 QR/BAR 코드를 생성합니다.
         </p>
       </div>
       <!--
@@ -92,18 +93,17 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">QR/Bar Code</h5>
-
-              <div class="mb-3">
-                <img
-                  src="images/1korA12345678-qr.png"
-                  class="rounded mx-auto d-block"
-                />
+              <div class="mb-3" id="qr-img">
+                <!-- <img src="images/ssG4NkoJxtqQAhYdLQ==-qr.png" class="rounded mx-auto d-block"  style="max-width: 100%; height: auto;"> -->
+              </div>
+              <div class="mb-3" id="bar-img">
+                <!-- <img src="images/ssG4NkoJxtqQAhYdLQ==-bar.png" class="rounded mx-auto d-block"  style="max-width: 100%; height: auto;"> -->
               </div>
               <div class="mb-3">
-                <img
-                  src="images/1korA12345678-bar.png"
-                  class="rounded mx-auto d-block"
-                />
+                <!-- <button type="button" class="btn btn-info">MRZ 생성</button> -->
+                <button type="button" class="btn btn-primary invisible" id="print-btn" onclick=content_print();>
+                  프린터 하기
+                </button>
               </div>
             </div>
           </div>
@@ -134,26 +134,91 @@
       ];
       
       const mrzText = document.getElementById('mrz-text');
-
+      const qrImg = document.getElementById('qr-img');
+      const barImg = document.getElementById('bar-img');
+      const printBtn = document.getElementById('print-btn');
       document.getElementById('mrz-select').addEventListener('change', (e) => {
         const value = e.target.value;
 
-        if (!value) return;
+        if (!value) {
+          mrzText.value = '';
+          return;
+        }
         console.log(value);
         const selectedMrz = mrzSamples[parseInt(value)];
         mrzText.value = selectedMrz;
         console.log(selectedMrz.length);
-      })
+      });
 
-      document.getElementById('code-btn').addEventListener('click', (e) => {
+      
+      document.getElementById('code-btn').addEventListener('click', async (e) => {
         //axios.post('http://localhost:3000/codes', {}).then(data => {}).catch(error)
         if (!mrzText.value || mrzText.value === '') {
           alert('MRZ 문자열을 선택하세요!!')
           return;
         }
-        console.log('send')
-      });
+        console.log('send');
+        let response = null;
+        try {
+          response = await axios.post('http://localhost:3000/codes', { mrz: mrzText.value.trim() });
+        } catch (error) {
+          console.log(error);
+          alert('에러 발생');
+          return;
+        }
+       
+        if (!response) {
+          alert('No result');
+          return;
+        }
 
+        console.log(response.data);
+        const { success, fileName } = response.data;
+        if (!success) {
+          alert('서버 에러 발생' + result);
+            return;
+        }
+    
+        const qrFile = `images/${fileName}-qr.png`;
+        const barFile = `images/${fileName}-bar.png`;
+
+        addCodeImage(qrImg, qrFile);
+        addCodeImage(barImg, barFile);
+
+        printBtn.classList.remove('invisible');
+
+    });
+
+
+    function addCodeImage(node, fileName) {
+      const img = document.createElement('img'); 
+      img.src = fileName; // 이미지 경로 설정 (랜덤)
+      img.classList.add('rounded', 'mx-auto', 'd-block');
+      img.style = 'max-width: 100%; height: auto;';
+      node.innerHTML = '';
+      node.appendChild(img); 
+    }
+
+
+    function content_print() {  
+      var inbody = document.body.innerHTML; // 이전 body 영역 저장
+      
+      window.onbeforeprint = function() { // 프린트 화면 호출 전 발생하는 이벤트
+        const container = document.createElement('div');
+        container.classList.add('container');
+        container.appendChild(qrImg);
+        container.appendChild(barImg);
+
+        document.body.innerHTML = container.innerHTML; // 원하는 영역 지정
+      }
+
+      window.onafterprint = function() { // 프린트 출력 후 발생하는 이벤트
+        document.body.innerHTML = inbody; // 이전 body 영역으로 복구
+      }
+
+      window.print();
+      location.reload(true);
+    }   
 
     </script>
   </body>
