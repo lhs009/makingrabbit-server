@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const { decrypt } = require('../lib/cipherUtil');
-const httpResponse = require('../common/httpResponse');
+const { decrypt } = require("../lib/cipherUtil");
+const httpResponse = require("../common/httpResponse");
 /*
  format: VERSION [1 byte] + CODE_TYPE [1 byte] + PASSPORT INFO [MAX 12 bytes]
  1. 1차원 바코드 용 타입 1: 국적 + 여권번호
@@ -24,10 +24,10 @@ const decryption = async (req, res, next) => {
     const codeType = result[1];
     const data = result.substring(2, result.length);
     console.log(data);
-    let resp = '';
-    if (codeType === '1') {
+    let resp = "";
+    if (codeType === "1") {
       resp = createResponseByBarcodeType(data);
-    } else if (codeType === 'A') {
+    } else if (codeType === "A") {
       resp = createResponseByQRcodeType(data);
     } else {
       return next(httpResponse.InvalidParameters);
@@ -51,9 +51,10 @@ const createResponseByBarcodeType = (data) => {
 const createResponseByQRcodeType = (data) => {
   // const country = data.substring(0, 3);
   // const passportNo = data.substring(3, 10);
-  const jsonParsed = JSON.parse(data);
-  console.log(jsonParsed);
-  return jsonParsed;
+  // const jsonParsed = JSON.parse(data);
+  // console.log(jsonParsed);
+
+  return data;
 };
 module.exports = {
   decryption,
