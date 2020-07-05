@@ -1,0 +1,16 @@
+.print-container {
+  width: 90%;
+  height: 720px;
+  margin: 0 auto;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: black;
+}
+
+.print-code {
+  height: 500px;
+  margin: 200px;
+  padding: 10px;
+}
