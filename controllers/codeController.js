@@ -74,8 +74,8 @@ const barcodeGenerator = async (data, fileName) => {
   const png = await bwipjs.toBuffer({
     bcid: 'code128', // Barcode type
     text: data, // Text to encode
-    scale: 3, // 3x scaling factor
-    height: 30, // Bar height, in millimeters
+    scale: 2, // 3x scaling factor
+    height: 20, // Bar height, in millimeters
     includetext: true, // Show human-readable text
     textxalign: 'center', // Always good to set this
   });

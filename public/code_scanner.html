@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Making Rabbit</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- <script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script> -->
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+      <a href="landing.html" class="navbar-brand mr-3"><img src="assets/logo.png" alt="..." class="img-thumbnail" /></a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>QR/BAR 코드 스캔 데모</h1>
+      <p class="lead mt-4">
+        실제 QR/BAR 코드 스캐너를 활용한 데모는 준비 중입니다. 준비 전까지는
+        QR 코드를 파일 불러오기로 읽어 들여서 QR 코드의 문자열을 인증 서버로
+        디코딩 합니다.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 card-group">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title mb-4">QR/BARCODE 리더기 입력 폼</h4>
+            <div class="mb-3">
+              <!-- <label for="validationTextarea"><h4>h4>Wating on passport reader input...</h4></label> -->
+              <label for="code-text" class="mb-2">QR/BARCODE 리더기로 읽으려면 텍스트 박스가 활성화 상태여야 합니다. 커스가 활성화 되지 않았을 경우 마우스로 텍스트
+                박스를 클릭하여 활성화 합니다. 리더기로 코드를 읽으면, 텍스트 상자에 패스포트 정보 암호 문자열이 나타나고 우측에 디코딩 결과가 나옵니다.</label>
+              <textarea rows="10" class="form-control" id="code-text" required></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!---------------------------------------- //-->
+      <div class="col-sm-6 card-group">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Scanned Result</h5>
+            <div class="mb-3" id="code-reader-results">
+            </div>
+            <div class="mb-3">
+              <span class="mb-3" id="decoded-str"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <footer class="mt-4">
+      <div class="row">
+        <div class="col-md-6">
+          <p>Copyright &copy; 2020 Making Rabbit</p>
+        </div>
+        <div class="col-md-6 text-md-right">
+          <a href="#" class="text-dark">Terms of Use</a>
+          <span class="text-muted mx-2">|</span>
+          <a href="#" class="text-dark">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/codeReader.js"></script>
+</body>
+
+</html>

@@ -24,8 +24,8 @@ mrzText.addEventListener('keypress', (event) => {
   const mrz = ocrLine1.trim() + ocrLine2.trim();
   console.log(mrz + ':' + mrz.length);
   createCodes(mrz);
-  this.value = '';
-  this.focus();
+  // this.value = '';
+  // this.focus();
 });
 
 async function createCodes(mrz) {

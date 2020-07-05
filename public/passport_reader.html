@@ -47,15 +47,13 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title mb-4">여권 리더기 입력 폼</h4>
-            <form action="" method="POST">
-              <div class="mb-3">
-                <!-- <label for="validationTextarea"><h4>h4>Wating on passport reader input...</h4></label> -->
-                <label for="mrz-text" class="mb-5">여권 리더기로 읽으려면 텍스트 박스가 활성화 상태여야 합니다. 커스가 활성화 되지 않았을 경우 마우스로 텍스트 박스를
-                  클릭하여 활성화 합니다.여권
-                  리더기로 여권을 읽으면, 텍스트 상자에 여권 MRZ 문자열이 나타납니다.</label>
-                <textarea rows="20" class="form-control" id="mrz-text" required></textarea>
-              </div>
-            </form>
+            <div class="mb-3">
+              <!-- <label for="validationTextarea"><h4>h4>Wating on passport reader input...</h4></label> -->
+              <label for="mrz-text" class="mb-2">여권 리더기로 읽으려면 텍스트 박스가 활성화 상태여야 합니다. 커스가 활성화 되지 않았을 경우 마우스로 텍스트 박스를
+                클릭하여 활성화 합니다.여권
+                리더기로 여권을 읽으면, 텍스트 상자에 여권 MRZ 문자열이 나타납니다.</label>
+              <textarea rows="20" class="form-control" id="mrz-text" required></textarea>
+            </div>
           </div>
         </div>
       </div>
@@ -94,9 +92,7 @@
     </div>
   </footer>
   </div>
-  <script src='js/bxlcommon.js'></script>
-  <script src='js/bxllabel.js'></script>
-  <script src='js/readerScrypt.js'>
+  <script src='js/mrzReader.js'>
   </script>
 </body>
 
