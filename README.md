@@ -61,3 +61,14 @@
 - Token 기반 인증 구현 (JWT)
 - Web portal에서 가입한 사용자의 MY page에 발급된 clientId, clientSecret으로 HTTB basic으로 인증
 - 인증 OK 경우 JWT 기반 accessToken, refreshToken 발급
+
+## sample passport OCR
+
+START
+OCR Line 1: PMKORCHOI<<JIN<GI<<<<<<<<<<<<<<<<<<<<<<<<<<<
+OCR Line 2: M528609178KOR6709165M27052621261410V18602278
+OCR Line 3:
+MSR Track 1:
+MSR Track 2:
+MSR Track 3:
+END

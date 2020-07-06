@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="js/JsBarcode.all.js"></script>
+    <script src="js/qrcode.js"></script>
+  </head>
+  <body>
+    <div>
+      <canvas id="barcode"></canvas>
+      <!-- or -->
+      <div id="qrcode"></div>
+      <script>
+        JsBarcode("#barcode", "ssGwOFYettiYBBMUJVc", {
+          displayValue: true,
+          fontSize: 30,
+        });
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+          text: "http://jindo.dev.naver.com/collie",
+          width: 256,
+          height: 256,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+        //qrcode.makeCode();
+      </script>
+    </div>
+  </body>
+</html>
