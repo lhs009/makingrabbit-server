@@ -13,7 +13,7 @@ function printCodes(qrString, barString) {
   let barPosX = 10; // X 좌표
   let barPosY = 100; // Y 좌표
   let barWidth = 3; // 바코드 길이
-  let nBarWidth = 2;
+  let nBarWidth = 1.5;
   let barCodeHri = 1; // 바코드에 나오는 글자 위치 및 사이즈 (1: 밑에 폰트 사이즈 1, 3: 밑에 폰트 사이즈 2)
   let barRotation = 0; // rotation 없음
 
