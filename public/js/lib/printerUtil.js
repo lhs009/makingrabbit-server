@@ -41,7 +41,7 @@ function printCodes(qrString, barString) {
   let barCodeSymbol = 1; // 바코드 타입 code 128
   let barCodeHeight = 100; // 바코드 높이
   let barPosX = 100; // X 좌표
-  let barPosY = 100; // Y 좌표
+  let barPosY = 120; // Y 좌표
   let barWidth = 3; // 바코드 길이
   let nBarWidth = 1;
   let barCodeHri = 1; // 바코드에 나오는 글자 위치 및 사이즈 (1: 밑에 폰트 사이즈 1, 3: 밑에 폰트 사이즈 2)
@@ -51,8 +51,8 @@ function printCodes(qrString, barString) {
 
   checkLabelStatus(); //  프린터 상태 체크 label_func['func1'] = { checkLabelStatus: [] }
   clearBuffer(); //  프린터 버퍼 초기화 lable_func['func2'] = { clearBuffer: [] }
-  drawDeviceFont('상륙 허가증', 100, 10, 'a', 2, 2, 3, 0, 0, 0);
-  drawDeviceFont('BARCODE PASSPORT', 100, 40, 'a', 2, 2, 3, 0, 1, 0);
+  drawDeviceFont('상륙 허가증', 100, 40, 'a', 2, 2, 0, 0, 0, 0);
+  drawDeviceFont('BARCODE PASSPORT', 100, 80, 'a', 2, 2, 0, 0, 0, 0);
 
   //  프린터 버퍼에 1차원 바코드 입력
   draw1DBarcode(
