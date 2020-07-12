@@ -12,8 +12,8 @@ function printCodes(qrString, barString) {
   let barCodeHeight = 100; // 바코드 높이
   let barPosX = 50; // X 좌표
   let barPosY = 50; // Y 좌표
-  let barWidth = 4; // 바코드 길이
-  let nBarWidth = 2;
+  let barWidth = 2; // 바코드 길이
+  let nBarWidth = 1;
   let barCodeHri = 1; // 바코드에 나오는 글자 위치 및 사이즈 (1: 밑에 폰트 사이즈 1, 3: 밑에 폰트 사이즈 2)
   let barRotation = 0; // rotation 없음
 
@@ -42,7 +42,7 @@ function printCodes(qrString, barString) {
   // 6) size: 바코드 크기(1~9)
   // 7) rotation: 회전
   let qrPosX = barPosX;
-  let qrPosY = barPosY + barCodeHeight + 20;
+  let qrPosY = barPosY + barCodeHeight + 50;
   let qrModel = 1; // model 2
   let qrEccLevel = 'Q';
   let qrSize = 4;
