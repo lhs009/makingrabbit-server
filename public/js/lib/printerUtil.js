@@ -41,7 +41,7 @@ function printCodes(qrString, barString) {
   let barCodeSymbol = 1; // 바코드 타입 code 128
   let barCodeHeight = 100; // 바코드 높이
   let barPosX = 100; // X 좌표
-  let barPosY = 120; // Y 좌표
+  let barPosY = 140; // Y 좌표
   let barWidth = 3; // 바코드 길이
   let nBarWidth = 1;
   let barCodeHri = 1; // 바코드에 나오는 글자 위치 및 사이즈 (1: 밑에 폰트 사이즈 1, 3: 밑에 폰트 사이즈 2)
