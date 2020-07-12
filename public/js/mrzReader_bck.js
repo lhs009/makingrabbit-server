@@ -128,7 +128,42 @@ function _content_print() {
 }
 
 function content_print() {
-  printCodes(QR_STRING, BAR_STRING);
+  var inbody = document.body.innerHTML; // 이전 body 영역 저장
+  const container = `
+    <div class="print-container">
+      <div class="print-code" id="print-qrcode"></div>
+      <div class="print-code">
+        <img id="print-barcode">
+      </div>
+    </div>
+  `;
+
+  window.onbeforeprint = function () {
+    // 프린트 화면 호출 전 발생하는 이벤트
+    document.body.innerHTML = container; // 원하는 영역 지정
+    const qrcode = new QRCode(document.getElementById('print-qrcode'), {
+      text: QR_STRING,
+      width: 256,
+      height: 256,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+
+    JsBarcode('#print-barcode', BAR_STRING, {
+      displayValue: true,
+      fontSize: 30,
+    });
+  };
+
+  window.onafterprint = function () {
+    // 프린트 출력 후 발생하는 이벤트
+    document.body.innerHTML = inbody; // 이전 body 영역으로 복구
+    location.reload(true);
+  };
+
+  window.print();
+  //location.reload(true);
 }
 
 function init() {

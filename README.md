@@ -72,3 +72,5 @@ MSR Track 1:
 MSR Track 2:
 MSR Track 3:
 END
+
+## 여권 리더기 / QR 리더기 입력 모드 자동으로 영문 전환 처리 필요

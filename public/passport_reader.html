@@ -12,7 +12,22 @@
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+  <style>
+    .text_box {
+      -webkit-ime-mode: inactive;
+      -moz-ime-mode: inactive;
+      -ms-ime-mode: inactive;
+      ime-mode: inactive;
+    }
+  </style>
 </head>
+<!-- 
+  auto : 기존 값
+normal : 기본 값
+active :  IME기본 설정 언어(한글로 되어있으면 한글)로 입력됨.
+inactive : 영문이 기본으로 설정됨
+disabled : 한/영 전환키를 사용해도 영문으로만 입력됨.
+  //-->
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
@@ -52,7 +67,7 @@
               <label for="mrz-text" class="mb-2">여권 리더기로 읽으려면 텍스트 박스가 활성화 상태여야 합니다. 커스가 활성화 되지 않았을 경우 마우스로 텍스트 박스를
                 클릭하여 활성화 합니다.여권
                 리더기로 여권을 읽으면, 텍스트 상자에 여권 MRZ 문자열이 나타납니다.</label>
-              <textarea rows="20" class="form-control" id="mrz-text" required></textarea>
+              <textarea rows="20" class="form-control text_box" id="mrz-text" required></textarea>
             </div>
           </div>
         </div>
@@ -97,6 +112,9 @@
   <script src="js/JsBarcode.all.js">
   </script>
   <script src="js/qrcode.js"></script>
+  <script src="js/lib/bxlcommon.js"></script>
+  <script src="js/lib/bxllabel.js"></script>
+  <script src="js/lib/printerUtil.js"></script>
   <script src='js/mrzReader.js'>
   </script>
 </body>

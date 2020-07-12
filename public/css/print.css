@@ -5,9 +5,16 @@
     size: auto;
     margin: 0;
   }
+  html,
+  body {
+    margin: 0;
 
+    height: 2in;
+    width: 3in;
+    border: 10px solid red;
+  }
   .print-container {
-    width: 90%;
+    /*width: 90%;
     /* width: 5.08cm;
     height: 7.62chm; */
     margin: 0 auto;
@@ -19,8 +26,8 @@
     /* border: 1px solid red; */
   }
   .print-code {
-    width: 100%;
-    height: 50vh;
+    /* width: 100%;
+    height: 50vh; */
     border: 1px solid black;
     margin: 1rem;
     padding: 2rem;
