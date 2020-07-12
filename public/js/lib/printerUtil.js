@@ -52,7 +52,7 @@ function printCodes(qrString, barString) {
   checkLabelStatus(); //  프린터 상태 체크 label_func['func1'] = { checkLabelStatus: [] }
   clearBuffer(); //  프린터 버퍼 초기화 lable_func['func2'] = { clearBuffer: [] }
   drawDeviceFont('상륙허가증', 140, 30, 'a', 2, 2, 0, 0, 0, 0);
-  drawDeviceFont('BARCODE PASSPORT', 80, 70, 'a', 2, 2, 0, 0, 0, 0);
+  drawDeviceFont('BARCODE PASSPORT', 85, 70, 'a', 2, 2, 0, 0, 0, 0);
 
   //  프린터 버퍼에 1차원 바코드 입력
   draw1DBarcode(
