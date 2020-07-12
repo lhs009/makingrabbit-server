@@ -6,6 +6,36 @@ function viewResult(result) {
   alert(result);
 }
 
+/*
+
+setLabelId(issueID);
+checkLabelStatus();
+clearBuffer();
+drawDeviceFont("1234567890",32,1115,"0",2,2,3,0,0,0);
+drawTrueTypeFont("S63",60,880,"Arial",80,3,false,true,false,true);
+drawDeviceFont("-",110,930,"1",2,2,3,0,1,0);
+drawDeviceFont("0",80,900,"4",2,2,3,0,1,0);
+draw1DBarcode("1234567890",213,1165,1,3,2,96,3,3);
+drawDeviceFont("주식회사 빅솔론",359,1200,"a",2,2,3,0,1,0);
+drawDeviceFont("010-0000-0000",400,1200,"0",2,2,3,0,1,0);
+drawDeviceFont("031-000-0000",430,1200,"0",2,2,3,0,1,0);
+drawDeviceFont("경기도 성남시 분당구
+판교역로 241번길 20",459,1200,"b",1,1,3,0,1,0);
+drawDeviceFont("(삼평동,미래에셋 벤처타워 7층)",492,1200,"b",1,1,3,0,1,0);
+drawDeviceFont("1 / 1",630,1150,"b",2,2,3,0,1,0);
+drawBitmapFile("C:\\BIXOLON mPrint Server\\BIXOLON.bmp",0,80,100,0);
+drawBitmapFile("C:\\BIXOLON mPrint Server\\BIXOLON.bmp",100,60,200,0);
+drawBitmapFile("C:\\BIXOLON mPrint Server\\BIXOLON.bmp",200,50,300,0);
+drawBitmapFile("C:\\BIXOLON mPrint Server\\BIXOLON.bmp",300,50,350,0);
+drawBlock(10,10,800,1210,"B",5);
+printBuffer();
+var strSubmit = getLabelData();
+console.log(strSubmit);
+issueID++;
+requestPrint(p_name.value, strSubmit, viewResult);
+
+*/
+
 function printCodes(qrString, barString) {
   let barCodeData = barString; // 바코드 데이터
   let barCodeSymbol = 1; // 바코드 타입 code 128
@@ -21,9 +51,8 @@ function printCodes(qrString, barString) {
 
   checkLabelStatus(); //  프린터 상태 체크 label_func['func1'] = { checkLabelStatus: [] }
   clearBuffer(); //  프린터 버퍼 초기화 lable_func['func2'] = { clearBuffer: [] }
-
-  drawDeviceFont('상륙 허가증', 359, 10, 'a', 2, 2, 3, 0, 1, 0);
-  drawDeviceFont('BARCODE PASSPORT', 400, 40, 'a', 2, 2, 3, 0, 1, 0);
+  drawDeviceFont('상륙 허가증', 32, 1115, 'a', 2, 2, 3, 0, 0, 0);
+  drawDeviceFont('BARCODE PASSPORT', 60, 880, 'a', 2, 2, 3, 0, 1, 0);
 
   //  프린터 버퍼에 1차원 바코드 입력
   draw1DBarcode(
