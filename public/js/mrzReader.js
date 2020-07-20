@@ -64,8 +64,8 @@ async function createCodes(mrz) {
 
   const qrcode = new QRCode(document.getElementById('qr-code'), {
     text: qrString,
-    width: 256,
-    height: 256,
+    width: 160,
+    height: 160,
     colorDark: '#000000',
     colorLight: '#ffffff',
     correctLevel: QRCode.CorrectLevel.H,

@@ -37,37 +37,26 @@ disabled : 한/영 전환키를 사용해도 영문으로만 입력됨.
   </nav>
   <div class="container">
     <div class="jumbotron">
-      <h1>QR/BAR 코드 생성 데모</h1>
-      <p class="lead mt-4">
-        <!-- <a href="https://www.tutorialrepublic.com" target="_blank"
-            >tutorialrepublic.com</a
-          > -->
-        실제 여권 리더기를 활용한 데모는 준비 중입니다.
-        준비 전까지는 임의의 여권 MRZ 문자열을 생성 해서 QR/BAR 코드를 생성합니다.
-      </p>
+      <h1 class="mb-4 text-center">
+        <b>바코드 PASSPORT 발행 데모</b>
+      </h1>
+      <h3 class="text-center">
+        여권리더기로 읽은 여권 정보를 암호화하여 바코드 PASSPORT를 발행합니다.
+      </h3>
     </div>
-    <!--
-    firstName: "Jane",
-    lastName: "Lodges",
-    passportNumber: "123456789",
-    countryCode: "USA",
-    nationality: "USA",
-    birthday: "01.02.1983",
-    gender: "F",
-    validUntilDay: "02.03.2028",
-    personalNumber: "12345678901234",
--->
     <div class="row">
       <div class="col-sm-6 card-group">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title mb-4">여권 리더기 입력 폼</h4>
-            <div class="mb-3">
-              <!-- <label for="validationTextarea"><h4>h4>Wating on passport reader input...</h4></label> -->
+            <h5 class="card-title"><b>여권리더기로 여권 스캔</b></h5>
+            <h5 class="card-text">※ 아래 텍스트 박스를 활성화 후 스캔합니다.
+            </h5>
+            <div class="mt-3 mb-3">
+              <!-- <label for="validationTextarea"><h4>h4>Wating on passport reader input...</h4></label>
               <label for="mrz-text" class="mb-2">여권 리더기로 읽으려면 텍스트 박스가 활성화 상태여야 합니다. 커스가 활성화 되지 않았을 경우 마우스로 텍스트 박스를
                 클릭하여 활성화 합니다.여권
-                리더기로 여권을 읽으면, 텍스트 상자에 여권 MRZ 문자열이 나타납니다.</label>
-              <textarea rows="20" class="form-control text_box" id="mrz-text" required></textarea>
+                리더기로 여권을 읽으면, 텍스트 상자에 여권 MRZ 문자열이 나타납니다.</label> -->
+              <textarea rows="12" class="form-control text_box" id="mrz-text" required></textarea>
             </div>
           </div>
         </div>
@@ -76,7 +65,8 @@ disabled : 한/영 전환키를 사용해도 영문으로만 입력됨.
       <div class="col-sm-6 card-group">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">QR/Bar Code</h5>
+            <h5 class="card-title"><b>바코드 PASSPORT</b>
+            </h5>
             <div class="mb-3" id="qr-code">
               <!-- <img src="images/ssG4NkoJxtqQAhYdLQ==-qr.png" class="rounded mx-auto d-block"  style="max-width: 100%; height: auto;"> -->
             </div>
@@ -93,21 +83,19 @@ disabled : 한/영 전환키를 사용해도 영문으로만 입력됨.
         </div>
       </div>
     </div>
-  </div>
-
-  <hr />
-  <footer class="mt-4">
-    <div class="row">
-      <div class="col-md-6">
-        <p>Copyright &copy; 2020 Making Rabbit</p>
+    <hr />
+    <footer class="mt-4">
+      <div class="row">
+        <div class="col-md-6">
+          <p>Copyright &copy; 2020 Making Rabbit</p>
+        </div>
+        <div class="col-md-6 text-md-right">
+          <a href="#" class="text-dark">Terms of Use</a>
+          <span class="text-muted mx-2">|</span>
+          <a href="#" class="text-dark">Privacy Policy</a>
+        </div>
       </div>
-      <div class="col-md-6 text-md-right">
-        <a href="#" class="text-dark">Terms of Use</a>
-        <span class="text-muted mx-2">|</span>
-        <a href="#" class="text-dark">Privacy Policy</a>
-      </div>
-    </div>
-  </footer>
+    </footer>
   </div>
   <script src="js/JsBarcode.all.js">
   </script>
