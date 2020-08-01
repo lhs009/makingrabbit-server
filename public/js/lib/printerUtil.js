@@ -101,7 +101,7 @@ function printCodes(qrString, barString) {
   let barPosY = 140; // Y 좌표
   let barWidth = 3; // 바코드 길이
   let nBarWidth = 1;
-  let barCodeHri = 1; // 바코드에 나오는 글자 위치 및 사이즈 (0: 프리터 안함, 1: 밑에 폰트 사이즈 1, 3: 밑에 폰트 사이즈 2)
+  let barCodeHri = 0; // 바코드에 나오는 글자 위치 및 사이즈 (0: 프리터 안함, 1: 밑에 폰트 사이즈 1, 3: 밑에 폰트 사이즈 2)
   let barRotation = 0; // rotation 없음
 
   setLabelId(issueID); // label_data['id'] = 1, label_data { id: 1, functions: {} }
