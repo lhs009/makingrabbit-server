@@ -1,8 +1,8 @@
-console.log("init");
-const codeText = document.getElementById("code-text");
-const resultContainer = document.getElementById("code-reader-results");
+console.log('init');
+const codeText = document.getElementById('code-text');
+const resultContainer = document.getElementById('code-reader-results');
 
-codeText.addEventListener("keypress", async (event) => {
+codeText.addEventListener('keypress', async (event) => {
   console.log(event.target.value);
   const text = event.target.value;
   const key = event.which || event.keyCode;
@@ -20,48 +20,51 @@ codeText.addEventListener("keypress", async (event) => {
     response = await decode(text);
   } catch (error) {
     console.log(error);
-    alert("에러 발생");
+    alert('에러 발생');
     return;
   }
 
   if (!response) {
-    alert("No result");
+    alert('No result');
     return;
   }
 
   console.log(response.data);
   const { success, result } = response.data;
   if (!success) {
-    alert("서버 에러 발생" + result);
+    alert('서버 에러 발생' + result);
     return;
   }
 
   const documentCode = result.documentCode
     ? `<li>도큐먼트코드: ${result.documentCode}</li>`
-    : "";
+    : '';
   const issuingCountry = result.issuingCountry
     ? `<li>발행국가: ${result.issuingCountry}</li>`
-    : "";
+    : '';
   const documentNumber = result.documentNumber
     ? `<li>여권번호: ${result.documentNumber}</li>`
-    : "";
+    : '';
   const countryCode = result.countryCode
     ? `<li>출신국가: ${result.countryCode}</li>`
-    : "";
+    : '';
   const dateOfExpiry = result.dateOfExpiry
     ? `<li>여권만료일: ${result.dateOfExpiry}</li>`
-    : "";
+    : '';
   const personalNumber = result.personalNumber
     ? `<li>개인번호: ${result.personalNumber}</li>`
-    : "";
+    : '';
   const dateOfBirth = result.dateOfBirth
     ? `<li>생년월일: ${result.dateOfBirth}</li>`
-    : "";
-  const gender = result.gender ? `<li>성별: ${result.gender}</li>` : "";
-  const surname = result.surname ? `<li>성: ${result.surname}</li>` : "";
+    : '';
+  const gender = result.gender ? `<li>성별: ${result.gender}</li>` : '';
+  const surname = result.surname ? `<li>성: ${result.surname}</li>` : '';
   const givenName = result.givenName
     ? `<li>이름: ${result.givenName}</li>`
-    : "";
+    : '';
+  const barcodeIssuedDate = result.barcodeIssuedDate
+    ? `<li>바코드 발급일: ${result.barcodeIssuedDate}</li>`
+    : '';
   console.log(result);
 
   const tags = `
@@ -76,6 +79,7 @@ codeText.addEventListener("keypress", async (event) => {
     ${gender}
     ${surname}
     ${givenName}
+    ${barcodeIssuedDate}
     </ul>`;
 
   // const tags = `<ul>
@@ -103,11 +107,11 @@ codeText.addEventListener("keypress", async (event) => {
   //                 <li>이름: ${result.givenName ? result.givenName : ""}</li>
   //               </ul>`;
 
-  document.getElementById("decoded-str").innerHTML = tags;
+  document.getElementById('decoded-str').innerHTML = tags;
 });
 
 async function decode(text) {
-  const response = await axios.post("/service", {
+  const response = await axios.post('/service', {
     payload: text.trim(),
   });
   return response;

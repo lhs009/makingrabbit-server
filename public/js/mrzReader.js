@@ -1,6 +1,6 @@
 const mrzText = document.getElementById('mrz-text');
 const qrImg = document.getElementById('qr-code');
-const barImg = document.getElementById('ba-rcode');
+const barImg = document.getElementById('bar-code');
 const printBtn = document.getElementById('print-btn');
 
 let QR_STRING = '';
@@ -53,7 +53,7 @@ async function createCodes(mrz) {
   }
 
   console.log(response.data);
-  const { success, qrString, barString } = response.data;
+  const { success, qrString, barString, barFile, qrFile } = response.data;
   if (!success) {
     alert('서버 에러 발생' + result);
     return;
@@ -72,6 +72,8 @@ async function createCodes(mrz) {
   });
 
   JsBarcode('#barcode-img', barString, {
+    // width: 400,
+    // height: 100,
     displayValue: true,
     fontSize: 30,
   });

@@ -39,7 +39,7 @@ const decryption = async (req, res, next) => {
   }
 };
 
-const createResponseByBarcodeType = (data) => {
+const _createResponseByBarcodeType = (data) => {
   const country = data.substring(0, 3);
   const passportNo = data.substring(3, data.length);
   return {
@@ -48,7 +48,19 @@ const createResponseByBarcodeType = (data) => {
   };
 };
 
-const createResponseByQRcodeType = (data) => {
+// 바코드 발급일 추가
+const createResponseByBarcodeType = (data) => {
+  const barcodeIssuedDate = data.substring(0, 8);
+  const country = data.substring(8, 11);
+  const passportNo = data.substring(11, data.length);
+  return {
+    countryCode: country,
+    documentNumber: passportNo,
+    barcodeIssuedDate: barcodeIssuedDate,
+  };
+};
+
+const _createResponseByQRcodeType = (data) => {
   // const country = data.substring(0, 3);
   // const passportNo = data.substring(3, 10);
   // const jsonParsed = JSON.parse(data);
@@ -69,6 +81,32 @@ const createResponseByQRcodeType = (data) => {
     givenName: passportInfo[9] ? passportInfo[9] : '',
   };
 };
+
+// 바코드 발급일 추가
+const createResponseByQRcodeType = (data) => {
+  // const country = data.substring(0, 3);
+  // const passportNo = data.substring(3, 10);
+  // const jsonParsed = JSON.parse(data);
+  // console.log(jsonParsed);
+
+  const passportInfo = data.split(':');
+
+  return {
+    documentCode: passportInfo[0] ? passportInfo[0] : '',
+    issuingCountry: passportInfo[1] ? passportInfo[1] : '',
+    documentNumber: passportInfo[2] ? passportInfo[2] : '',
+    countryCode: passportInfo[3] ? passportInfo[3] : '',
+    dateOfExpiry: passportInfo[4] ? passportInfo[4] : '',
+    personalNumber: passportInfo[5] ? passportInfo[5] : '',
+    dateOfBirth: passportInfo[6] ? passportInfo[6] : '',
+    gender: passportInfo[7] ? passportInfo[7] : '',
+    surname: passportInfo[8] ? passportInfo[8] : '',
+    givenName: passportInfo[9] ? passportInfo[9] : '',
+    // 발급입 추가
+    barcodeIssuedDate: passportInfo[10] ? passportInfo[10] : '',
+  };
+};
+
 module.exports = {
   decryption,
 };

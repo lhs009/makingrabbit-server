@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const bwipjs = require("bwip-js");
-const qr = require("qr-image");
-const httpResponse = require("../common/httpResponse");
-const { checkSumMRZ } = require("../lib/mrzUtil");
-const { encrypt } = require("../lib/cipherUtil");
+const fs = require('fs');
+const bwipjs = require('bwip-js');
+const qr = require('qr-image');
+const httpResponse = require('../common/httpResponse');
+const { checkSumMRZ } = require('../lib/mrzUtil');
+const { encrypt } = require('../lib/cipherUtil');
 
 const _codeGenerator = async (req, res, next) => {
   const mrz = req.body.mrz;
@@ -19,8 +19,8 @@ const _codeGenerator = async (req, res, next) => {
       return next(httpResponse.InvalidParameters);
     }
 
-    const encQR = encrypt(qr).replace(/=/g, "");
-    const encBAR = encrypt(bar).replace(/=/g, "");
+    const encQR = encrypt(qr).replace(/=/g, '');
+    const encBAR = encrypt(bar).replace(/=/g, '');
     console.log(encQR);
     const fileName = encBAR;
     await barcodeGenerator(encBAR, fileName);
@@ -50,8 +50,8 @@ const codeGenerator = async (req, res, next) => {
       return next(httpResponse.InvalidParameters);
     }
 
-    const encQR = encrypt(qr).replace(/=/g, "");
-    const encBAR = encrypt(bar).replace(/=/g, "");
+    const encQR = encrypt(qr).replace(/=/g, '');
+    const encBAR = encrypt(bar).replace(/=/g, '');
     console.log(encQR);
     const fileName = encBAR;
     await barcodeGenerator(encBAR, fileName);
@@ -61,6 +61,8 @@ const codeGenerator = async (req, res, next) => {
       success: true,
       barString: encBAR,
       qrString: encQR,
+      barFile: 'images/' + fileName + '-bar.png',
+      qrFile: 'images/' + fileName + '-qr.png',
     });
   } catch (error) {
     console.log(error);
@@ -72,15 +74,15 @@ const codeGenerator = async (req, res, next) => {
 
 const barcodeGenerator = async (data, fileName) => {
   const png = await bwipjs.toBuffer({
-    bcid: "code128", // Barcode type
+    bcid: 'code128', // Barcode type
     text: data, // Text to encode
     scale: 3, // 3x scaling factor
     height: 10, // Bar height, in millimeters
     includetext: true, // Show human-readable text
-    textxalign: "center", // Always good to set this
+    textxalign: 'center', // Always good to set this
   });
 
-  fs.writeFile(`./public/images/${fileName}-bar.png`, png, "binary", (err) => {
+  fs.writeFile(`./public/images/${fileName}-bar.png`, png, 'binary', (err) => {
     if (err) {
       console.log(err);
     }
@@ -91,7 +93,7 @@ const barcodeGenerator = async (data, fileName) => {
 
 const qrcodeGenerator = (data, fileName) => {
   // Generate QR Code from text
-  const png = qr.imageSync(data, { type: "png", size: 10 });
+  const png = qr.imageSync(data, { type: 'png', size: 10 });
   fs.writeFileSync(`./public/images/${fileName}-qr.png`, png, (err) => {
     if (err) {
       console.log(err);

@@ -73,4 +73,9 @@ MSR Track 2:
 MSR Track 3:
 END
 
+## sample QR reader passport
+
+srGrOj4YzLiafxYfLFZ5EeOuLUncdqMOqV7b+uroUVf7HPWCuxOD/cTG8bvaPuIC
+sGe/Ug2EL66AF+3RqD5dWZws5Jg
+
 ## 여권 리더기 / QR 리더기 입력 모드 자동으로 영문 전환 처리 필요
