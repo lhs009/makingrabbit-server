@@ -169,6 +169,8 @@ function drawBitmap(data, x, y, width, dither)
 */
 
 function printCodes(qrString, barString) {
+  console.log(qrString);
+  console.log(barString);
   // width 60 height 20
   //const TAXFREEBTM = 'Qk2mAQAAAAAAAD4AAAAoAAAARgAAAB4AAAABAAEAAAAAAGgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD5z4PPnzwGD/wAAAD577Ofnzk+f/wAAAD577k/nzs+f/wAAAD54Dx/nzM+f/wAAAD593x/gwcGD/wAAAD58nx/nzs+f/wAAAD5+vk/nzk+f/wAAAD5+POfnzk+f/wAAADAePPPgwMGD/wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAD///////////wAAAA=';
   const TAXFREEBTM =
@@ -177,7 +179,7 @@ function printCodes(qrString, barString) {
   let barCodeSymbol = 1; // 바코드 타입 code 128
   let barCodeHeight = 100; // 바코드 높이
   //let barPosX = 100; // X 좌표
-  let barPosX = 5;
+  let barPosX = 20;
   let barPosY = 140; // Y 좌표
   let barWidth = 3; // 바코드 길이
   let nBarWidth = 1;
@@ -226,7 +228,7 @@ function printCodes(qrString, barString) {
   // 6  QR 코드에 TAX FREE Bitmap string 그리기 (60 * 20)
   let insertedX = qrPosX + 90;
   let insertedY = qrPosY + 110;
-  //drawBitmap(TAXFREEBTM, insertedX, insertedY, 60, 0);
+  drawBitmap(TAXFREEBTM, insertedX, insertedY, 60, 0);
 
   // 프린터 버퍼에 있는 데이터 출력 label_func['func3'] = { printBuffer: [] }
   printBuffer();
