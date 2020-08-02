@@ -179,7 +179,7 @@ function printCodes(qrString, barString) {
   let barCodeSymbol = 1; // 바코드 타입 code 128
   let barCodeHeight = 100; // 바코드 높이
   //let barPosX = 100; // X 좌표
-  let barPosX = 20;
+  let barPosX = 30;
   let barPosY = 140; // Y 좌표
   let barWidth = 3; // 바코드 길이
   let nBarWidth = 1;
@@ -218,7 +218,7 @@ function printCodes(qrString, barString) {
   // 6) size: QR 크기(1~9)
   // 7) rotation: 회전
   let qrPosX = 100;
-  let qrPosY = barPosY + barCodeHeight + 80;
+  let qrPosY = barPosY + barCodeHeight + 70;
   let qrModel = 1; // model 2
   let qrEccLevel = 'Q';
   let qrSize = 4;
