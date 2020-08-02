@@ -224,11 +224,11 @@ function printCodes(qrString, barString) {
   let qrSize = 4;
   let qrRotation = 0;
   // 5  프린터 버퍼에 QR 코드 그리기
-  drawQRCode(qrString, qrPosX, qrPosY, qrModel, qrEccLevel, qrSize, qrRotation);
+  //drawQRCode(qrString, qrPosX, qrPosY, qrModel, qrEccLevel, qrSize, qrRotation);
   // 6  QR 코드에 TAX FREE Bitmap string 그리기 (60 * 20)
   let insertedX = qrPosX + 90;
   // let insertedY = qrPosY + 110;
-  let insertedY = qrPosY + 280;
+  let insertedY = qrPosY;
   drawBitmap(TAXFREEBTM, insertedX, insertedY, 60, 1);
 
   // 프린터 버퍼에 있는 데이터 출력 label_func['func3'] = { printBuffer: [] }
