@@ -217,7 +217,7 @@ function printCodes(qrString, barString) {
   // 5) eccLevel: 에러 교정 레벨 값 (L,M,Q,H)
   // 6) size: QR 크기(1~9)
   // 7) rotation: 회전
-  let qrPosX = 120;
+  let qrPosX = 100;
   let qrPosY = barPosY + barCodeHeight + 80;
   let qrModel = 1; // model 2
   let qrEccLevel = 'Q';
