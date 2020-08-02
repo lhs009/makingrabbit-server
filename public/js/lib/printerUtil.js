@@ -226,7 +226,7 @@ function printCodes(qrString, barString) {
   // 6  QR 코드에 TAX FREE Bitmap string 그리기 (60 * 20)
   let insertedX = qrPosX + 90;
   let insertedY = qrPosY + 110;
-  drawBitmap(TAXFREEBTM, insertedX, insertedY, 60, 0);
+  //drawBitmap(TAXFREEBTM, insertedX, insertedY, 60, 0);
 
   // 프린터 버퍼에 있는 데이터 출력 label_func['func3'] = { printBuffer: [] }
   printBuffer();
