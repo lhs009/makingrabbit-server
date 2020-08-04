@@ -167,7 +167,6 @@ function drawBitmap(data, x, y, width, dither)
 */
 
 function printCodes(qrString, barString, qrbitmap) {
-  console.log('############################################################3');
   console.log(qrbitmap);
   let barCodeData = barString; // 바코드 데이터
   let barCodeSymbol = 1; // 바코드 타입 code 128
