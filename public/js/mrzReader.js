@@ -244,7 +244,7 @@ function content_print() {
   ctx.drawImage(img, 0, 0);
   const qrbitmap = CanvasToBMP.toDataURL(canvas);
   //printCodes(QR_STRING, BAR_STRING, qrbitmap);
-  printCanvas(cavas);
+  printCanvas(canvas);
 }
 
 function init() {
