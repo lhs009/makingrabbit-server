@@ -166,8 +166,8 @@ function drawBitmap(data, x, y, width, dither)
 
 
 */
-function printCodes(qrString, barString, qrbitmap) {
-  console.log(qrbitmap);
+function printCodes(qrString, barString, qrBase64) {
+  console.log(qrBase64);
   let barCodeData = barString; // 바코드 데이터
   let barCodeSymbol = 1; // 바코드 타입 code 128
   let barCodeHeight = 100; // 바코드 높이
@@ -217,7 +217,7 @@ function printCodes(qrString, barString, qrbitmap) {
   let qrRotation = 0;
   // 5  프린터 버퍼에 QR 코드 그리기
   //drawQRCode(qrString, qrPosX, qrPosY, qrModel, qrEccLevel, qrSize, qrRotation);
-  drawBitmap(qrbitmap, qrPosX, qrPosY, 228, 0);
+  drawBitmap(qrBase64, qrPosX, qrPosY, 228, 0);
 
   // 프린터 버퍼에 있는 데이터 출력 label_func['func3'] = { printBuffer: [] }
   printBuffer();

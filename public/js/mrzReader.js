@@ -242,9 +242,10 @@ function content_print() {
   //var img = document.getElementById("scream");
   //canvas.setAttribute('style', 'display: block');
   ctx.drawImage(img, 0, 0);
-  const qrbitmap = CanvasToBMP.toDataURL(canvas);
+  printCodes(QR_STRING, BAR_STRING, canvas.toDataURL());
+  //const qrbitmap = CanvasToBMP.toDataURL(canvas);
   //printCodes(QR_STRING, BAR_STRING, qrbitmap);
-  printCanvas(canvas);
+  //printCanvas(canvas);
 }
 
 function init() {
