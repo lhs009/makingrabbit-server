@@ -165,7 +165,6 @@ function drawBitmap(data, x, y, width, dither)
 
 
 */
-
 function printCodes(qrString, barString, qrbitmap) {
   console.log(qrbitmap);
   let barCodeData = barString; // 바코드 데이터
