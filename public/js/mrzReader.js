@@ -243,7 +243,8 @@ function content_print() {
   //canvas.setAttribute('style', 'display: block');
   ctx.drawImage(img, 0, 0);
   const qrbitmap = CanvasToBMP.toDataURL(canvas);
-  printCodes(QR_STRING, BAR_STRING, qrbitmap);
+  //printCodes(QR_STRING, BAR_STRING, qrbitmap);
+  printCanvas(cavas);
 }
 
 function init() {

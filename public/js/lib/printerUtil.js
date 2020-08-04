@@ -3,6 +3,7 @@ let issueID = 1;
 let printName = 'Printer1';
 
 function viewResult(result) {
+  console.log(result);
   alert(result);
 }
 
@@ -230,7 +231,8 @@ function printCodes(qrString, barString, qrbitmap) {
 function printCanvas(canvas) {
   // canvas data to image(encode bas64)
   let imgData = canvas.toDataURL();
-  imageWidth = parseInt(image_input.value);
+  //imageWidth = parseInt(image_input.value);
+  let imageWidth = 228;
   setLabelId(issueID);
   checkLabelStatus();
   clearBuffer();
