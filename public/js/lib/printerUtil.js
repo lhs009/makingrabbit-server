@@ -239,17 +239,17 @@ function printCodes(qrString, barString, qrBase64) {
   clearBuffer(); //  프린터 버퍼 초기화 lable_func['func2'] = { clearBuffer: [] }
   // 1. 프린터 버퍼에 BARCODE PASSPORT 레이블 그리기
   // drawDeviceFont (text, x, y, fontType, widthEnlarge, heightEnlarge, rotation, invert, bold, alignment)
-  drawDeviceFont('BARCODE PASSPORT', 90, 30, 'a', 2, 2, 0, 0, 0, 0);
+  drawDeviceFont('BARCODE PASSPORT', 90, 40, 'a', 2, 2, 0, 0, 0, 0);
   // 2. 프린터 버퍼에 QR 코드 BASE64 이미지 데이터 그리기
   let qrPosX = 120;
-  let qrPosY = 70;
+  let qrPosY = 200;
   drawBitmap(qrBase64, qrPosX, qrPosY, 171, 1);
   // 3. 프린터 버퍼에 BAR 코드 BASE64 데이터 그리기
   let barCodeData = barString; // 바코드 데이터
   let barCodeSymbol = 1; // 바코드 타입 code 128
-  let barCodeHeight = 100; // 바코드 높이
+  let barCodeHeight = 80; // 바코드 높이
   let barPosX = 30; // X 좌표
-  let barPosY = 300; // Y 좌표
+  let barPosY = 400; // Y 좌표
   let barWidth = 2; // widebar
   let nBarWidth = 1; // narrowbar
   let barCodeHri = 0; // 바코드에 나오는 글자 위치 및 사이즈 (0: 프리터 안함, 1: 밑에 폰트 사이즈 1, 3: 밑에 폰트 사이즈 2)
@@ -270,7 +270,8 @@ function printCodes(qrString, barString, qrBase64) {
   let taxFreeStringY = barPosY + barCodeHeight + 5;
   //drawDeviceFont('TAX FREE', 150, taxFreeStringY, 'a', 2, 2, 0, 0, 0, 0);
   let taxfreebase64 =
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAYAQMAAABX1OjvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAP///6XZn90AAAAJcEhZcwAADsQAAA7EAZUrDhsAAACPSURBVCjPY/gPBxDmfazM+QimPJz5zx7OfIZgHkMwmxDMhnow84Hk93MCBQIWHPwMDyw/z7EoEJAAMv/8+Dn/w+fPt3/+Z/jz6Y99w+fPp0HMbzX1DB+EZ4AUPAMyoWof1NgpFH+qBik4bwlkfrYGMzfPY/j82RLEvD/5HOPnzyBtICuZEX67j+RNVOb//wArNL52V+E76gAAAABJRU5ErkJggg==';
+    'data:image/png;base64,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';
+
   drawBitmap(taxfreebase64, 150, taxFreeStringY, 80, 1);
 
   // 프린터 버퍼에 있는 데이터 출력 label_func['func3'] = { printBuffer: [] }
