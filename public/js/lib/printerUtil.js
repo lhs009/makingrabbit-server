@@ -174,8 +174,8 @@ function printCodes(qrString, barString, qrBase64) {
   //let barPosX = 100; // X 좌표
   let barPosX = 30;
   let barPosY = 140; // Y 좌표
-  let barWidth = 3; // 바코드 길이
-  let nBarWidth = 1;
+  let barWidth = 2; // widebar
+  let nBarWidth = 1; // narrowbar
   let barCodeHri = 0; // 바코드에 나오는 글자 위치 및 사이즈 (0: 프리터 안함, 1: 밑에 폰트 사이즈 1, 3: 밑에 폰트 사이즈 2)
   let barRotation = 0; // rotation 없음
 
@@ -184,10 +184,11 @@ function printCodes(qrString, barString, qrBase64) {
   checkLabelStatus(); //  프린터 상태 체크 label_func['func1'] = { checkLabelStatus: [] }
   clearBuffer(); //  프린터 버퍼 초기화 lable_func['func2'] = { clearBuffer: [] }
   // 1. 프리터 버퍼에 상륙허가증 레이블 그리기
-  drawDeviceFont('상륙허가증', 140, 30, 'a', 2, 2, 0, 0, 0, 0);
+  // drawDeviceFont('상륙허가증', 140, 30, 'a', 2, 2, 0, 0, 0, 0);
   // 2. 프린터 버퍼에 BARCODE PASSPORT 레이블 그리기
   drawDeviceFont('BARCODE PASSPORT', 90, 70, 'a', 2, 2, 0, 0, 0, 0);
   // 3. 프린터 버퍼에 1차원 바코드 그리기
+  //draw1DBarcode (data, x, y, symbol, narrowbar, widebar, height, rotation, hri)
   draw1DBarcode(
     barCodeData,
     barPosX,
@@ -201,7 +202,11 @@ function printCodes(qrString, barString, qrBase64) {
   );
   // 4. 프린터 버퍼에 TAX FREE String 삽입
   let taxFreeStringY = barPosY + barCodeHeight + 5;
-  drawDeviceFont('TAX FREE', 150, taxFreeStringY, 'a', 2, 2, 0, 0, 0, 0);
+  //drawDeviceFont('TAX FREE', 150, taxFreeStringY, 'a', 2, 2, 0, 0, 0, 0);
+  let taxfreebase64 =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAYAQMAAABX1OjvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAP///6XZn90AAAAJcEhZcwAADsQAAA7EAZUrDhsAAACPSURBVCjPY/gPBxDmfazM+QimPJz5zx7OfIZgHkMwmxDMhnow84Hk93MCBQIWHPwMDyw/z7EoEJAAMv/8+Dn/w+fPt3/+Z/jz6Y99w+fPp0HMbzX1DB+EZ4AUPAMyoWof1NgpFH+qBik4bwlkfrYGMzfPY/j82RLEvD/5HOPnzyBtICuZEX67j+RNVOb//wArNL52V+E76gAAAABJRU5ErkJggg==';
+  drawBitmap(taxfreebase64, 150, taxFreeStringY, 80, 1);
+
   // 1) data: QR 데이터
   // 2) x: x축 좌표
   // 3) y: y축 좌표
