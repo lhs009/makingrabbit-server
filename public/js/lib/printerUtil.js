@@ -217,7 +217,7 @@ function printCodes(qrString, barString, qrBase64) {
   let qrRotation = 0;
   // 5  프린터 버퍼에 QR 코드 그리기
   //drawQRCode(qrString, qrPosX, qrPosY, qrModel, qrEccLevel, qrSize, qrRotation);
-  drawBitmap(qrBase64, qrPosX, qrPosY, 228, 0);
+  drawBitmap(qrBase64, qrPosX, qrPosY, 171, 1);
 
   // 프린터 버퍼에 있는 데이터 출력 label_func['func3'] = { printBuffer: [] }
   printBuffer();
