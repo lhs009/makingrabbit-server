@@ -52,24 +52,16 @@ const codeGenerator = async (req, res, next) => {
 
     const encQR = encrypt(qr).replace(/=/g, '');
     const encBAR = encrypt(bar).replace(/=/g, '');
-    console.log(encQR);
-    const fileName = encBAR;
-    await barcodeGenerator(encBAR, fileName);
-    qrcodeGenerator(encQR, fileName);
 
     res.json({
       success: true,
       barString: encBAR,
       qrString: encQR,
-      barFile: 'images/' + fileName + '-bar.png',
-      qrFile: 'images/' + fileName + '-qr.png',
     });
   } catch (error) {
     console.log(error);
     next(httpResponse.InternalServerError);
   }
-
-  //res.redirect('/codes/show');
 };
 
 const barcodeGenerator = async (data, fileName) => {
