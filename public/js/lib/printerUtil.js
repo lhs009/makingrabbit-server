@@ -166,7 +166,7 @@ function drawBitmap(data, x, y, width, dither)
 
 
 */
-function printCodes(qrString, barString, qrBase64) {
+function _printCodes(qrString, barString, qrBase64) {
   console.log(qrBase64);
   let barCodeData = barString; // 바코드 데이터
   let barCodeSymbol = 1; // 바코드 타입 code 128
@@ -184,7 +184,7 @@ function printCodes(qrString, barString, qrBase64) {
   checkLabelStatus(); //  프린터 상태 체크 label_func['func1'] = { checkLabelStatus: [] }
   clearBuffer(); //  프린터 버퍼 초기화 lable_func['func2'] = { clearBuffer: [] }
   // 1. 프리터 버퍼에 상륙허가증 레이블 그리기
-  // drawDeviceFont('상륙허가증', 140, 30, 'a', 2, 2, 0, 0, 0, 0);
+  drawDeviceFont('상륙허가증', 140, 30, 'a', 2, 2, 0, 0, 0, 0);
   // 2. 프린터 버퍼에 BARCODE PASSPORT 레이블 그리기
   drawDeviceFont('BARCODE PASSPORT', 90, 70, 'a', 2, 2, 0, 0, 0, 0);
   // 3. 프린터 버퍼에 1차원 바코드 그리기
@@ -202,10 +202,7 @@ function printCodes(qrString, barString, qrBase64) {
   );
   // 4. 프린터 버퍼에 TAX FREE String 삽입
   let taxFreeStringY = barPosY + barCodeHeight + 5;
-  //drawDeviceFont('TAX FREE', 150, taxFreeStringY, 'a', 2, 2, 0, 0, 0, 0);
-  let taxfreebase64 =
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAYAQMAAABX1OjvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAP///6XZn90AAAAJcEhZcwAADsQAAA7EAZUrDhsAAACPSURBVCjPY/gPBxDmfazM+QimPJz5zx7OfIZgHkMwmxDMhnow84Hk93MCBQIWHPwMDyw/z7EoEJAAMv/8+Dn/w+fPt3/+Z/jz6Y99w+fPp0HMbzX1DB+EZ4AUPAMyoWof1NgpFH+qBik4bwlkfrYGMzfPY/j82RLEvD/5HOPnzyBtICuZEX67j+RNVOb//wArNL52V+E76gAAAABJRU5ErkJggg==';
-  drawBitmap(taxfreebase64, 150, taxFreeStringY, 80, 1);
+  drawDeviceFont('TAX FREE', 150, taxFreeStringY, 'a', 2, 2, 0, 0, 0, 0);
 
   // 1) data: QR 데이터
   // 2) x: x축 좌표
@@ -223,6 +220,58 @@ function printCodes(qrString, barString, qrBase64) {
   // 5  프린터 버퍼에 QR 코드 그리기
   //drawQRCode(qrString, qrPosX, qrPosY, qrModel, qrEccLevel, qrSize, qrRotation);
   drawBitmap(qrBase64, qrPosX, qrPosY, 171, 1);
+
+  // 프린터 버퍼에 있는 데이터 출력 label_func['func3'] = { printBuffer: [] }
+  printBuffer();
+  let strSubmit = getLabelData(); //label_data.functions = label_func
+  console.log(strSubmit); // label_data = { id: 1, functions: { 'func1': { checkLabelStagus: [] }, 'func2': { clearBuffer: [] }, 'func3': { printBuffer: [] }}}
+
+  issueID++;
+  requestPrint(printName, strSubmit, viewResult);
+}
+
+function printCodes(qrString, barString, qrBase64) {
+  console.log(qrBase64);
+
+  setLabelId(issueID); // label_data['id'] = 1, label_data { id: 1, functions: {} }
+
+  checkLabelStatus(); //  프린터 상태 체크 label_func['func1'] = { checkLabelStatus: [] }
+  clearBuffer(); //  프린터 버퍼 초기화 lable_func['func2'] = { clearBuffer: [] }
+  // 1. 프린터 버퍼에 BARCODE PASSPORT 레이블 그리기
+  // drawDeviceFont (text, x, y, fontType, widthEnlarge, heightEnlarge, rotation, invert, bold, alignment)
+  drawDeviceFont('BARCODE PASSPORT', 90, 30, 'a', 2, 2, 0, 0, 0, 0);
+  // 2. 프린터 버퍼에 QR 코드 BASE64 이미지 데이터 그리기
+  let qrPosX = 120;
+  let qrPosY = 70;
+  drawBitmap(qrBase64, qrPosX, qrPosY, 171, 1);
+  // 3. 프린터 버퍼에 BAR 코드 BASE64 데이터 그리기
+  let barCodeData = barString; // 바코드 데이터
+  let barCodeSymbol = 1; // 바코드 타입 code 128
+  let barCodeHeight = 100; // 바코드 높이
+  let barPosX = 30; // X 좌표
+  let barPosY = 300; // Y 좌표
+  let barWidth = 2; // widebar
+  let nBarWidth = 1; // narrowbar
+  let barCodeHri = 0; // 바코드에 나오는 글자 위치 및 사이즈 (0: 프리터 안함, 1: 밑에 폰트 사이즈 1, 3: 밑에 폰트 사이즈 2)
+  let barRotation = 0; // rotation 없음
+  //draw1DBarcode (data, x, y, symbol, narrowbar, widebar, height, rotation, hri)
+  draw1DBarcode(
+    barCodeData,
+    barPosX,
+    barPosY,
+    barCodeSymbol,
+    nBarWidth,
+    barWidth,
+    barCodeHeight,
+    barRotation,
+    barCodeHri
+  );
+  // 4. 프린터 버퍼에 TAX FREE String BASE64 데이터 그리기
+  let taxFreeStringY = barPosY + barCodeHeight + 5;
+  //drawDeviceFont('TAX FREE', 150, taxFreeStringY, 'a', 2, 2, 0, 0, 0, 0);
+  let taxfreebase64 =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAYAQMAAABX1OjvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAP///6XZn90AAAAJcEhZcwAADsQAAA7EAZUrDhsAAACPSURBVCjPY/gPBxDmfazM+QimPJz5zx7OfIZgHkMwmxDMhnow84Hk93MCBQIWHPwMDyw/z7EoEJAAMv/8+Dn/w+fPt3/+Z/jz6Y99w+fPp0HMbzX1DB+EZ4AUPAMyoWof1NgpFH+qBik4bwlkfrYGMzfPY/j82RLEvD/5HOPnzyBtICuZEX67j+RNVOb//wArNL52V+E76gAAAABJRU5ErkJggg==';
+  drawBitmap(taxfreebase64, 150, taxFreeStringY, 80, 1);
 
   // 프린터 버퍼에 있는 데이터 출력 label_func['func3'] = { printBuffer: [] }
   printBuffer();

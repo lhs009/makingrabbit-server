@@ -61,7 +61,7 @@ async function createCodes(mrz) {
     colorLight: '#ffffff',
     correctLevel: QRCode.CorrectLevel.H,
     text: qrString,
-    logo: 'images/taxfree_3.png',
+    logo: 'images/taxfree_1.png',
   });
 
   JsBarcode('#barcode-img', barString, {
