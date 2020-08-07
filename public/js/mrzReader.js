@@ -26,7 +26,7 @@ mrzText.addEventListener('keypress', (event) => {
 
 async function createCodes(mrz) {
   if (!mrz || mrz === '') {
-    alert('MRZ 문자열을 읽기 오류입니다');
+    alert('MRZ 문자열 읽기 오류입니다');
     return;
   }
 
@@ -35,7 +35,7 @@ async function createCodes(mrz) {
     response = await axios.post('/codes', { mrz: mrz });
   } catch (error) {
     console.log(error);
-    alert('에러 발생');
+    alert('여권 리더기로 다시 정확히 스캔해주세요.');
     return;
   }
 
