@@ -35,7 +35,7 @@ async function createCodes(mrz) {
     response = await axios.post('/codes', { mrz: mrz });
   } catch (error) {
     console.log(error);
-    alert('여권 리더기로 다시 정확히 스캔해주세요.');
+    alert('여권 읽기 실패! 다시 정확히 스캔해주세요.');
     return;
   }
 
@@ -79,7 +79,6 @@ function content_print() {
   const img = document.querySelector('#qr-code img');
   const ctx = canvas.getContext('2d');
   ctx.drawImage(img, 0, 0);
-  console.log('canvas width: ' + canvas.width);
   printCodes(QR_STRING, BAR_STRING, canvas.toDataURL());
 }
 

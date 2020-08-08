@@ -47,9 +47,9 @@ const codeGenerator = async (req, res, next) => {
   try {
     const { valid, qr, bar } = checkSumMRZ(mrz);
     if (!valid) {
-      return next(httpResponse.InvalidParameters);
+      return next(httpResponse.InvalidRequestData);
     }
-
+    // base64 string = 제거
     const encQR = encrypt(qr).replace(/=/g, '');
     const encBAR = encrypt(bar).replace(/=/g, '');
 
